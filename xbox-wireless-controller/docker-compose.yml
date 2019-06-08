@@ -8,14 +8,19 @@ services:
     restart: unless-stopped
     devices:
       - "/dev/fb0:/dev/fb0"
-# mount it as volume instead since input devices for xbox
-# controller are created by xboxdrv in container
+# this is not working since device files are created in the container by xboxdrv
+# after startup of the container
 #      - "/dev/input:/dev/input"
       - "/dev/snd:/dev/snd"
       - "/dev/vchiq:/dev/vchiq"
     #stdin_open: true
     #tty: true    
+    # TODO get rid of this
     privileged: true
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
+      # this requires privileged - so get rid of it
+      # e.g. use https://stackoverflow.com/a/53892718 and
+      # http://marc.merlins.org/perso/linux/post_2018-12-20_Accessing-USB-Devices-In-Docker-_ttyUSB0_-dev-bus-usb-_-for-fastboot_-adb_-without-using-privileged.html
+      # To be tested with real xbox controller hardware
       - "/dev/input:/dev/input"
