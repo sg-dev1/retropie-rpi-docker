@@ -1,19 +1,7 @@
-From ubuntu:19.10 AS builder
+From ubuntu:19.10
 
 RUN apt-get update && apt-get install -y \
   rsync \
   wget
 
 COPY scripts/privileged.sh /
-
-
-#############################################
-
-#ENV WORKSPACE /workspace
-#COPY ./scripts/ /workspace/scripts/
-#RUN mkdir /workspace/images
-
-#RUN /workspace/scripts/image_tools.sh download 4.4
-#RUN /workspace/scripts/image_tools.sh extract 4.4
-
-#############################################
