@@ -1,3 +1,21 @@
+# Retropie Docker Image
+
+Purpose of this project is to get Retropie running in a docker container on a Raspberry Pi.
+
+To create and start the image run the docker-build-and-run.sh script.
+
+## Details
+
+The process is split up into two images:
+  * retropie_download to download the latest retropie raspberry pi release from 
+    https://github.com/RetroPie/RetroPie-Setup/releases which is then extracted
+    and copied into a local directory
+  * retropie The retropie image which gets populate with the filesystem of the
+    image downloaded from the RetroPie-Setup github page and runs the
+    /usr/bin/emulationstation binary
+
+It was tested on a Raspberry Pi 3 running HypriotOS v1.10.0
+
 ## Troubleshooting
 
 ### "SDL init failed"
