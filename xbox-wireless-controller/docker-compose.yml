@@ -1,0 +1,21 @@
+version: '3'
+services:
+  retro:
+    image: retropie-xboxdrv
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    devices:
+      - "/dev/fb0:/dev/fb0"
+# mount it as volume instead since input devices for xbox
+# controller are created by xboxdrv in container
+#      - "/dev/input:/dev/input"
+      - "/dev/snd:/dev/snd"
+      - "/dev/vchiq:/dev/vchiq"
+    #stdin_open: true
+    #tty: true    
+    privileged: true
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/dev/input:/dev/input"

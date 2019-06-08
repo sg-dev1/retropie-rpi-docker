@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  your_service:
+    container_name: retropie_download
+    # First build the image from the Dockerfile
+    build:
+      # Change this to where you keep above Dockerfile
+      context: .
+      dockerfile: Dockerfile.build
+    image: retropie_download
+
+    # Then start a container from the just built image in privileged mode to finish what's left
+    entrypoint: /privileged.sh
+    privileged: true
+
+    volumes:
+      - "./.retropie_img:/workspace"

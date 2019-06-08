@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+xboxdrv --detach-kernel-driver --silent
