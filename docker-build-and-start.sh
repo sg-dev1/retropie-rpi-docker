@@ -2,7 +2,7 @@
 #
 # This script will block in the end
 # To run it without blocking, e.g. use
-# $> nohup ./docker-build.sh &
+# $> nohup ./docker-build-and-start.sh &
 # In this we you can also quit the ssh connection
 # while build is proceeding.
 #

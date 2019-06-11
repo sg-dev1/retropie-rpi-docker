@@ -24,6 +24,6 @@ echo "**** add s6 overlay ****" && \
 COPY ./run /etc/services.d/xboxdr/run
 ENTRYPOINT ["/init"]
 
-CMD ["/usr/bin/execlineb", "-P", "-c", "emptyenv export HOME /home/pi export TERM xterm s6-setuidgid pi /usr/bin/emulationstation"]
+#CMD ["/usr/bin/execlineb", "-P", "-c", "emptyenv export HOME /home/pi export TERM xterm s6-setuidgid pi /usr/bin/emulationstation"]
 # for testing to launch a bash in the container
-#CMD ["/usr/bin/execlineb", "-P", "-c", "emptyenv export HOME /home/pi s6-setuidgid pi /bin/bash"]
+CMD ["/usr/bin/execlineb", "-P", "-c", "emptyenv export HOME /home/pi s6-setuidgid pi /bin/bash"]

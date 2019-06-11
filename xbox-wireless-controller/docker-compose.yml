@@ -13,9 +13,15 @@ services:
 #      - "/dev/input:/dev/input"
       - "/dev/snd:/dev/snd"
       - "/dev/vchiq:/dev/vchiq"
-    #stdin_open: true
-    #tty: true    
+      - "/dev/bus:/dev/bus"
+      - "/dev/uinput:/dev/uinput"
+    stdin_open: true
+    tty: true    
     # TODO get rid of this
+    # -- currently only get it working with privileged set to true
+    # if set to false and launching jstest in a bash there is the following output: 
+    # $ jstest /dev/input/js0
+    # jstest: Operation not permitted
     privileged: true
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
@@ -24,3 +30,5 @@ services:
       # http://marc.merlins.org/perso/linux/post_2018-12-20_Accessing-USB-Devices-In-Docker-_ttyUSB0_-dev-bus-usb-_-for-fastboot_-adb_-without-using-privileged.html
       # To be tested with real xbox controller hardware
       - "/dev/input:/dev/input"
+    
+    #command: ["/usr/bin/execlineb", "-P", "-c", "if sleep 2.0 \"\" if ls -la /dev/input \"\" export HOME /home/pi export TERM xterm s6-setuidgid pi /usr/bin/emulationstation"]

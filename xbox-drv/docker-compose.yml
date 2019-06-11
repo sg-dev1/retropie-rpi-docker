@@ -1,0 +1,41 @@
+version: '3'
+services:
+  retro-xboxdrv:
+    image: xboxdrv
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+    
+    devices:
+      - "/dev/bus:/dev/bus"
+      - "/dev/uinput:/dev/uinput"
+    
+    #stdin_open: true
+    #tty: true
+  
+  retro:
+    image: retropie
+    # @build: Dockerfile in parent directory
+    restart: unless-stopped
+    
+    devices:
+      - "/dev/fb0:/dev/fb0"
+      
+      # both created by xoboxdrv
+      - "/dev/input/js0:/dev/input/js0"
+      - "/dev/input/event0:/dev/input/event0"
+      
+      - "/dev/snd:/dev/snd"
+      - "/dev/vchiq:/dev/vchiq"
+    
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+    
+    #entrypoint: "/usr/bin/emulationstation"
+    command: ["/bin/sh", "-c", "sleep 2.0 && export TERM=xterm && /usr/bin/emulationstation"]
+    
+    depends_on:
+      - retro-xboxdrv

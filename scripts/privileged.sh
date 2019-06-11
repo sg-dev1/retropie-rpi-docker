@@ -49,7 +49,7 @@ mount -o offset=$((512*${ROOT_OFFSET})) "$IMAGE_LOOP" $MOUNT_DIR
 
 # copy everything from mounted image
 echo "Rsync $MOUNT_DIR --> $MOUNT_DIR_COPY"
-rsync -av --exclude "sys" $MOUNT_DIR/ $MOUNT_DIR_COPY/
+rsync -av --exclude "sys" --exclude "dev" $MOUNT_DIR/ $MOUNT_DIR_COPY/
 
 # cleanup
 umount -l $MOUNT_DIR

@@ -14,5 +14,7 @@ services:
     entrypoint: /privileged.sh
     privileged: true
 
+    tty: true
+
     volumes:
       - "./.retropie_img:/workspace"
